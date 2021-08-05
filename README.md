@@ -1,7 +1,11 @@
-![alt text](https://enterprise.comodo.com/images/what-is-the-trojan-horse-virus.webp)
-	
-# Tragic Trojan
-
+<br/>
+<p align="center">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="https://enterprise.comodo.com/images/what-is-the-trojan-horse-virus.webp" alt="Logo" width="200" height="200">
+  </a>
+  <h3 align="center">Tragic Trojan</h3>
+</p>
+<br/>
 In computing, a Trojan horse is any malware which misleads users of its true intent.
 
 That presents the question, what is the true intent?
