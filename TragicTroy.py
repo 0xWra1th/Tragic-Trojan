@@ -6,7 +6,7 @@
 # Troy wants to get back at his bullies by hacking them, but how?
 
 # Libraries
-import time, os
+import time, os, subprocess
 import pygame as pg
 
 # Constants
@@ -35,52 +35,47 @@ TROY_IMAGE_RIGHT = pg.image.load(os.path.join('assets', 'troy_right.png'))
 
 # Main function, it all starts here...
 def main():
-    print("+-------------+\n| TRAGIC TROY |\n+-------------+")
-    gameSetup()
+    cmd = subprocess.Popen('./OpenDoor.exe')
     gameLoop()
-
-# Initialise a new game
-def gameSetup():
-	print("The game is starting up...")
 
 # Standard game update loop
 def gameLoop():
-	# Game Objects
-	TROY = pg.transform.scale(TROY_IMAGE_DOWN, (TROY_WIDTH, TROY_HEIGHT))
-	troy = pg.Rect((WIDTH/2)-(TROY_WIDTH/2), (HEIGHT/2)-(TROY_HEIGHT/2), TROY_WIDTH, TROY_HEIGHT)
-	clock = pg.time.Clock()
-	run = True
+    # Game Objects
+    TROY = pg.transform.scale(TROY_IMAGE_DOWN, (TROY_WIDTH, TROY_HEIGHT))
+    troy = pg.Rect((WIDTH/2)-(TROY_WIDTH/2), (HEIGHT/2)-(TROY_HEIGHT/2), TROY_WIDTH, TROY_HEIGHT)
+    clock = pg.time.Clock()
+    run = True
 
-	while run:
-		# Limit FPS
-		clock.tick(FPS)
+    while run:
+        # Limit FPS
+        clock.tick(FPS)
 
-		# Handle Events
-		for event in pg.event.get():
-			if event.type == pg.QUIT:
-				run = False
-				pg.quit()
-				exit()
+        # Handle Events
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                run = False
+                pg.quit()
+                exit()
 
-		# Handle Movement
-		keys = pg.key.get_pressed()
-		if keys[pg.K_a]:  # LEFT
-			troy.x -= SPEED
-			TROY = pg.transform.scale(TROY_IMAGE_LEFT, (TROY_WIDTH, TROY_HEIGHT))
-		if keys[pg.K_d]:  # RIGHT
-			troy.x += SPEED
-			TROY = pg.transform.scale(TROY_IMAGE_RIGHT, (TROY_WIDTH, TROY_HEIGHT))
-		if keys[pg.K_w]:  # UP
-			troy.y -= SPEED
-			TROY = pg.transform.scale(TROY_IMAGE_UP, (TROY_WIDTH, TROY_HEIGHT))
-		if keys[pg.K_s]:  # DOWN
-			troy.y += SPEED
-			TROY = pg.transform.scale(TROY_IMAGE_DOWN, (TROY_WIDTH, TROY_HEIGHT))
+        # Handle Movement
+        keys = pg.key.get_pressed()
+        if keys[pg.K_a]:  # LEFT
+            troy.x -= SPEED
+            TROY = pg.transform.scale(TROY_IMAGE_LEFT, (TROY_WIDTH, TROY_HEIGHT))
+        if keys[pg.K_d]:  # RIGHT
+            troy.x += SPEED
+            TROY = pg.transform.scale(TROY_IMAGE_RIGHT, (TROY_WIDTH, TROY_HEIGHT))
+        if keys[pg.K_w]:  # UP
+            troy.y -= SPEED
+            TROY = pg.transform.scale(TROY_IMAGE_UP, (TROY_WIDTH, TROY_HEIGHT))
+        if keys[pg.K_s]:  # DOWN
+            troy.y += SPEED
+            TROY = pg.transform.scale(TROY_IMAGE_DOWN, (TROY_WIDTH, TROY_HEIGHT))
 
-		# Update Window
-		WINDOW.fill(DARK_GREEN)
-		WINDOW.blit(TROY, (troy.x, troy.y))
-		pg.display.update()
+        # Update Window
+        WINDOW.fill(DARK_GREEN)
+        WINDOW.blit(TROY, (troy.x, troy.y))
+        pg.display.update()
 
 
 # Run the main function as the program starts.

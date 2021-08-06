@@ -1,3 +1,4 @@
+THIS PROJECT IS FOR EDUCATIONAL PURPOSES ONLY! DO NOT USE THIS CODE MALICIOUSLY.
 <br/>
 <p align="center">
   <a href="https://github.com/github_username/repo_name">
