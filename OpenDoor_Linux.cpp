@@ -9,10 +9,6 @@ Benefits:
 #include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
-
-using namespace std;
-
-// Client side C/C++ program to demonstrate Socket programming
 #include <stdio.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -20,8 +16,10 @@ using namespace std;
 #include <string.h>
 #define PORT 44444
 #define REMOTE_HOST "127.0.0.1"
+
+using namespace std;
    
-int main(int argc, char const *argv[])
+int main()
 {
     // Socket Settings and Buffer
     int sock = 0, valread;
