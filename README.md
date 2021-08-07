@@ -21,5 +21,10 @@ But realistically the goal of this project is learning the basics of malware dev
    * A useful application? Or maybe not so useful...A game?
       * Pygame will help to achieve this.
    * The backdoor.
-      * Python sockets.
+      * Sockets.
       * Going to need some form of AV evasion.
+
+### Problems encountered
+	* Cross-platform socket programming in C++ seems to be difficult.
+	* Packaging C++ and a Pygame together
+	* AV Evasion
