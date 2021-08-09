@@ -25,6 +25,6 @@ But realistically the goal of this project is learning the basics of malware dev
       * Going to need some form of AV evasion.
 
 ### Problems encountered
-	* Cross-platform socket programming in C++ seems to be difficult.
-	* Packaging C++ and a Pygame together
-	* AV Evasion
+   * Cross-platform socket programming in C++ seems to be difficult.
+   * Packaging C++ and a Pygame together
+   * AV Evasion
