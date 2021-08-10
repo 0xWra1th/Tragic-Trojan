@@ -25,6 +25,16 @@ But realistically the goal of this project is learning the basics of malware dev
       * Going to need some form of AV evasion.
 
 ### Problems encountered
+
    * Cross-platform socket programming in C++ seems to be difficult.
    * Packaging C++ and a Pygame together
    * AV Evasion
+
+### Timeline
+
+  1. Create Pygame frontend
+  2. Create Python payload
+  3. Discover C++ is better for malware development and AV evasion
+  4. Create C++ payload
+  5. Struggle to package python and C++ together
+  6. ...
