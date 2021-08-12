@@ -16,6 +16,10 @@ That presents the question, what is the true intent?
 Pwnage. Total domination of a system.
 But realistically the goal of this project is learning the basics of malware development.
 
+### Target and Goal
+
+Windows users are the target and I will attempt to create a backdoor for remote code execution.
+
 ### The components
 
    * A useful application? Or maybe not so useful...A game?
@@ -30,6 +34,9 @@ But realistically the goal of this project is learning the basics of malware dev
    * Packaging C++ and a Pygame together
    * AV Evasion
    * Need to learn the Windows API
+
+### What have I learned so far
+  1. You need a target and goal. (e.g. Target windows users to add them to a botnet or steal passwords)
 
 ### Timeline
 
