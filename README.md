@@ -29,6 +29,7 @@ But realistically the goal of this project is learning the basics of malware dev
    * Cross-platform socket programming in C++ seems to be difficult.
    * Packaging C++ and a Pygame together
    * AV Evasion
+   * Need to learn the Windows API
 
 ### Timeline
 
@@ -37,4 +38,4 @@ But realistically the goal of this project is learning the basics of malware dev
   3. Discover C++ is better for malware development and AV evasion
   4. Create C++ payload
   5. Struggle to package python and C++ together
-  6. ...
+  6. Create a frontend in C++, maybe not a game...
