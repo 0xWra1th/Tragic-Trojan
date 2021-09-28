@@ -19,7 +19,8 @@ But realistically the goal of this project is learning the basics of malware dev
 ### The components
 
    * A useful application? Or maybe not so useful...A game?
-      * Pygame will help to achieve this.
+      * Originally chose to use Pygame but it's pretty trash.
+      * Decided to move everything to C++ so I'll use another library to help with the development. 
    * The backdoor.
-      * Python sockets.
+      * ~~Python~~ C++ sockets.
       * Going to need some form of AV evasion.

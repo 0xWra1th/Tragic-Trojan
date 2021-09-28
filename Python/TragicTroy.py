@@ -35,7 +35,7 @@ TROY_IMAGE_RIGHT = pg.image.load(os.path.join('assets', 'troy_right.png'))
 
 # Main function, it all starts here...
 def main():
-    cmd = subprocess.Popen('./OpenDoor.exe')
+    #cmd = subprocess.Popen('./OpenDoor.exe')
     gameLoop()
 
 # Standard game update loop
