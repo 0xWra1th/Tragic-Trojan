@@ -22,7 +22,7 @@ int main()
     ball.setPosition(950.f , window.getSize().y / 2.f);
     bool right = false;
     bool down = false;
-    float SPEED = 10.f;
+    float BALL_SPEED = 10.f;
 
     // DIVIDER
     sf::RectangleShape divider(sf::Vector2f(2.f, window.getSize().y));
@@ -41,7 +41,6 @@ int main()
     player_left.setFillColor(sf::Color::White);
     player_left.setOrigin(10.f, 100.f);
     player_left.setPosition(225.f , window.getSize().y / 2.f);
-    std::cout << "Hello World!" << std::endl;
     float PLAYER_SPEED = 10.f;
 
     // PLAYER RIGHT
@@ -111,17 +110,23 @@ int main()
         }
         // -----------------------------------
 
-        // ------------ MOVE BALL ------------
-        if(right){
-            ball.setPosition(ball.getPosition().x + (SPEED * dt.asSeconds() * 100), ball.getPosition().y);
-        }else{
-            ball.setPosition(ball.getPosition().x - (SPEED * dt.asSeconds() * 100), ball.getPosition().y);
-        }
-
-        if(!right & ball.getPosition().x < 250.f){
+        // ------------ COLLISIONS -----------
+        if(player_left.getGlobalBounds().intersects(ball.getGlobalBounds())){
+            std::cout << "LEFT COLLISION" << std::endl;
             right = true;
-        }else if(right & ball.getPosition().x > window.getSize().x - 250.f){
+        }else if(player_right.getGlobalBounds().intersects(ball.getGlobalBounds())){
+            std::cout << "RIGHT COLLISION" << std::endl;
             right = false;
+        }
+        // -----------------------------------
+
+        // ------------ MOVE BALL ------------
+        if(ball.getPosition().x < 1600 & ball.getPosition().x > 0){
+            if(right){
+                ball.setPosition(ball.getPosition().x + (BALL_SPEED * dt.asSeconds() * 100), ball.getPosition().y);
+            }else{
+                ball.setPosition(ball.getPosition().x - (BALL_SPEED * dt.asSeconds() * 100), ball.getPosition().y);
+            }
         }
         // -----------------------------------
 
