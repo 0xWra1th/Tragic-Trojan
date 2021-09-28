@@ -1,10 +1,10 @@
 make:
-	g++ -c main.cpp
-	g++ main.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
-	rm main.o
+	g++ -c TragicTrojan.cpp
+	g++ TragicTrojan.o -o TragicTrojan -lsfml-graphics -lsfml-window -lsfml-system
+	rm TragicTrojan.o
 
-run:
-	./sfml-app
+run: make
+	./TragicTrojan
 
 clean:
-	rm sfml-app
+	rm TragicTrojan
