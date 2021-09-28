@@ -1,6 +1,7 @@
 // It's Pong.
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <string>
 
@@ -19,15 +20,35 @@ int main()
     int rightScore = 0;
     bool right = false;
     float BALL_SPEED = 10.f;
+    float BALL_Y_VELOCITY = 0.f;
     float PLAYER_SPEED = 10.f;
+    // -----------------------------------
+    
+    // ------------- AUDIO ---------------
+    sf::SoundBuffer hitBuff;
+    hitBuff.loadFromFile("assets/hit.wav");
+
+    sf::SoundBuffer wallBuff;
+    wallBuff.loadFromFile("assets/wall.wav");
+
+    sf::SoundBuffer scoreBuff;
+    scoreBuff.loadFromFile("assets/score.wav");
+
+    sf::Sound hitSound;
+    hitSound.setBuffer(hitBuff);
+    hitSound.setVolume(75);
+
+    sf::Sound wallSound;
+    wallSound.setBuffer(wallBuff);
+
+    sf::Sound scoreSound;
+    scoreSound.setBuffer(scoreBuff);
+    scoreSound.setVolume(40);
     // -----------------------------------
 
     // --------------- UI ----------------
     sf::Font font;
-    if (!font.loadFromFile("assets/ARCADE.TTF"))
-    {
-        std::cout << "Failed to load font!" << std::endl;
-    }
+    font.loadFromFile("assets/ARCADE.TTF");
 
     sf::Text left_score;
     left_score.setStyle(sf::Text::Bold);
@@ -95,12 +116,19 @@ int main()
             if (event.type == sf::Event::Closed){
                 window.close();
             }else if (event.type == sf::Event::KeyPressed){
-                if(event.key.code == sf::Keyboard::P){
-                    std::cout << "Pausing..." << std::endl;
-                }else if(event.key.code == sf::Keyboard::Escape){
-                    std::cout << "Exiting Game." << std::endl;
+                if(event.key.code == sf::Keyboard::Escape){
                     window.close();
                     return 0;
+                }else if(event.key.code == sf::Keyboard::R){
+                    // Reset
+                    leftScore = 0;
+                    rightScore = 0;
+                    score = std::to_string(leftScore);
+                    left_score.setString(score);
+                    score = std::to_string(rightScore);
+                    right_score.setString(score);
+                    ball.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+                    BALL_Y_VELOCITY = 0;
                 }
             }
         }
@@ -143,12 +171,26 @@ int main()
         // -----------------------------------
 
         // ------------ COLLISIONS -----------
+        // Player hitting ball
         if(player_left.getGlobalBounds().intersects(ball.getGlobalBounds())){
-            std::cout << "LEFT COLLISION" << std::endl;
             right = true;
+            float diff = ball.getPosition().y - player_left.getPosition().y;
+            BALL_Y_VELOCITY = diff / 10;
+            hitSound.play();
         }else if(player_right.getGlobalBounds().intersects(ball.getGlobalBounds())){
-            std::cout << "RIGHT COLLISION" << std::endl;
             right = false;
+            float diff = ball.getPosition().y - player_right.getPosition().y;
+            BALL_Y_VELOCITY = diff / 10;
+            hitSound.play();
+        }
+
+        // Ball bouncing off walls
+        if(ball.getPosition().y < 10.f){
+            BALL_Y_VELOCITY *= -1;
+            wallSound.play();
+        }else if(ball.getPosition().y > 890){
+            BALL_Y_VELOCITY *= -1;
+            wallSound.play();
         }
         // -----------------------------------
 
@@ -159,21 +201,25 @@ int main()
             left_score.setString(score);
             ball.setPosition(window.getSize().x / 2, window.getSize().y / 2);
             right = false;
+            BALL_Y_VELOCITY = 0;
+            scoreSound.play();
         }else if(ball.getPosition().x < 50.f){
             rightScore++;
             score = std::to_string(rightScore);
             right_score.setString(score);
             ball.setPosition(window.getSize().x / 2, window.getSize().y / 2);
             right = true;
+            BALL_Y_VELOCITY = 0;
+            scoreSound.play();
         }
         // -----------------------------------
 
         // ------------ MOVE BALL ------------
         if(ball.getPosition().x < 1600 & ball.getPosition().x > 0){
             if(right){
-                ball.setPosition(ball.getPosition().x + (BALL_SPEED * dt.asSeconds() * 100), ball.getPosition().y);
+                ball.setPosition(ball.getPosition().x + (BALL_SPEED * dt.asSeconds() * 100), ball.getPosition().y + (BALL_Y_VELOCITY * dt.asSeconds() * 100));
             }else{
-                ball.setPosition(ball.getPosition().x - (BALL_SPEED * dt.asSeconds() * 100), ball.getPosition().y);
+                ball.setPosition(ball.getPosition().x - (BALL_SPEED * dt.asSeconds() * 100), ball.getPosition().y + (BALL_Y_VELOCITY * dt.asSeconds() * 100));
             }
         }
         // -----------------------------------
